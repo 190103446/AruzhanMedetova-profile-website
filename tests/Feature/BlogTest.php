@@ -24,21 +24,20 @@ class BlogTest extends TestCase
     {
         $response = $this->get('/blog/1');
 
-        $response->assertStatus(405);
+        $response->assertStatus(200);
     }
 
     public function test_get_unexisted_blog()
     {
         $response = $this->get('/blog/10000');
 
-        $response->assertStatus(405);
+        $response->assertStatus(200);
     }
 
     public function test_blog_response()
     {
         $response = $this->get('/blog/1');
 
-      
-        $response->assertStatus(405)->assertSee('blog');
+        $response->assertViewHas('blog');
     }
 }
